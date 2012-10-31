@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">UIFrame</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main_frame">MainActivity</string>
+    <string name="secondary_menu">第二级菜单，由一个fragmnet实现</string>
+    <string name="top_menu">第一级菜单</string>
+    
+    <string name="test_button_one">测试按钮一</string>
+	<string name="test_button_two">测试按钮二</string>
+	<string name="test_button_fragment">fragment测试按钮</string>
+	<string name="closed_detail_frag">关闭详细页面</string>
+	
+	
+</resources>
