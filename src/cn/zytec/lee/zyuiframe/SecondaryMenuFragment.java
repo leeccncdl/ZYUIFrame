@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SecondaryMenuFragment extends Fragment implements OnClickListener {
@@ -17,6 +18,7 @@ public class SecondaryMenuFragment extends Fragment implements OnClickListener {
     public static SecondaryMenuFragment newInstance(int index) {
     	SecondaryMenuFragment f = new SecondaryMenuFragment();
 
+    	
         // Supply index input as an argument.
         Bundle args = new Bundle();
         args.putInt("index", index);
@@ -34,9 +36,9 @@ public class SecondaryMenuFragment extends Fragment implements OnClickListener {
 		int pos = getArguments().getInt("index", 0);
 		System.out.println(pos+"--------------------");
 		if(pos==0) {
-			textView.setText("当前显示的是测试一菜单",TextView.BufferType.EDITABLE);
+			textView.setText("top_menu_One",TextView.BufferType.EDITABLE);
 		} else {
-			textView.setText("当前显示的是测试二菜单",TextView.BufferType.EDITABLE);
+			textView.setText("top_menu_Two",TextView.BufferType.EDITABLE);
 			
 		}
 		super.onActivityCreated(savedInstanceState);
@@ -51,18 +53,7 @@ public class SecondaryMenuFragment extends Fragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-//		View root = inflater.inflate(R.layout.secondary_menu_fragment, container, false);
-//		textView = (TextView)(root.findViewById(R.id.secondary_menu_text));
-//		buttonTest = (Button) (root.findViewById(R.id.secondary_menu_frag_button_test));
-//		buttonTest.setOnClickListener(this);
-//		int pos = getArguments().getInt("index", 0);
-//		System.out.println(pos+"--------------------");
-//		if(pos==0) {
-//			textView.setText("当前显示的是测试一菜单",TextView.BufferType.EDITABLE);
-//		} else {
-//			textView.setText("当前显示的是测试二菜单",TextView.BufferType.EDITABLE);
-//			
-//		}
+
 		return inflater.inflate(R.layout.secondary_menu_fragment, container, false);
 	}
 
@@ -79,5 +70,4 @@ public class SecondaryMenuFragment extends Fragment implements OnClickListener {
 			 ((MainFrameActivity)getActivity()).OpenDetailFragment(0);
 		}
 	}
-	
 }

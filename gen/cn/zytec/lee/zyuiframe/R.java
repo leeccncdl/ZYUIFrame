@@ -22,14 +22,15 @@ public final class R {
         public static final int detail_button_frag=0x7f070000;
         public static final int detail_view_fl=0x7f070005;
         public static final int main_top_menu=0x7f070002;
-        public static final int menu_settings=0x7f07000b;
-        public static final int mic=0x7f070008;
-        public static final int secondary_menu_frag_button_test=0x7f070007;
-        public static final int secondary_menu_text=0x7f070006;
+        public static final int menu_settings=0x7f07000c;
+        public static final int mic=0x7f070009;
+        public static final int secondary_menu_frag_button_test=0x7f070008;
+        public static final int secondary_menu_text=0x7f070007;
         public static final int secondary_menu_view_fl=0x7f070004;
         public static final int shortcut_menu=0x7f070003;
-        public static final int top_menu_button1=0x7f070009;
-        public static final int top_menu_button2=0x7f07000a;
+        public static final int testid=0x7f070006;
+        public static final int top_menu_button1=0x7f07000a;
+        public static final int top_menu_button2=0x7f07000b;
     }
     public static final class layout {
         public static final int detail_fragment=0x7f030000;

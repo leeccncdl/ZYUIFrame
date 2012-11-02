@@ -11,6 +11,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/testid"
         style="@style/layout_horizontal"
         android:layout_weight="4"
         android:background="#113399"
