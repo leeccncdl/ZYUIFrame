@@ -27,6 +27,7 @@ public class MainFrameActivity extends FragmentActivity implements
 	private Interpolator decelerateInterpolater;
 	private FixedPositionAnimation fixedAnimation;
 	private boolean isLeftPosition = false;
+	private boolean isDetailFragExpand;
 	private GestureDetector gestureDetector;
 
 	private static int fragmentMovePercent = 10;
@@ -105,7 +106,7 @@ public class MainFrameActivity extends FragmentActivity implements
 	 * @description 详细页面的fragment在最上层的FrameLayout上，该方法由SecondaryFragment从Menu中触发
 	 * @param position secondaryMenu（fragment）的所选菜单Position
 	 */
-	public void OpenDetailFragment(int position) {
+	public void openDetailFragment(int position) {
 		DetailFragment detailFrag = DetailFragment.newInstance(position);
 
 		// Execute a transaction, replacing any existing fragment
@@ -120,7 +121,7 @@ public class MainFrameActivity extends FragmentActivity implements
 	 * @description 关闭详细页的Fragment，类本身调用（Activity 也要控制）
 	 * @param detailFrag
 	 */
-	public void ClosedDetailFragment(DetailFragment detailFrag) {
+	public void closedDetailFragment(DetailFragment detailFrag) {
 
 		// Execute a transaction, replacing any existing fragment
 		// with this one inside the frame.
@@ -128,6 +129,26 @@ public class MainFrameActivity extends FragmentActivity implements
 		ft.remove(detailFrag);
 		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		ft.commit();
+		isDetailFragExpand = false;
+	}
+	
+	/**
+	 * @description 最大化详细页面，二级菜单页面被动移动到靠左的位置，详细页面打开
+	 * @param detailFrag 来自哪个详细页面的fragment
+	 */
+	public void expandDetailFragment(DetailFragment detailFrag) {
+		if(isLeftPosition) {
+			//1.关闭当前的Fragment，打开新的fragment，用户可能已经做了某些当前操作，需需要保存状态
+			//2.直接更改Fragment 的 布局，显示效果未知
+			detailFrag.expandSelf();
+			isDetailFragExpand = true;
+		} else {
+			isLeftPosition = true;
+			fixedAnimation.prepareAnimation();
+			secondMenuFrameLayout.startAnimation(fixedAnimation);
+			detailFrag.expandSelf();
+			isDetailFragExpand = true;
+		}
 	}
 
 	/**
@@ -189,6 +210,11 @@ public class MainFrameActivity extends FragmentActivity implements
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 				float velocityY) {
+			
+			if(isDetailFragExpand) {
+				return true;
+			}
+			
 			if (e2.getX() > e1.getX()) {
 				isLeftPosition = false;
 			} else {
@@ -200,13 +226,22 @@ public class MainFrameActivity extends FragmentActivity implements
 		@Override
 		public boolean onScroll(MotionEvent e1, MotionEvent e2,
 				float distanceX, float distanceY) {
+			
+			if(isDetailFragExpand) {
+				return true;
+			}
 
 			if (e2.getAction() == MotionEvent.ACTION_MOVE) {
 
 				if (e1.getX() >= fragmentMoveDistance && e1.getX() <= widthOf60) {
 
 					float currentScrollDelta = e1.getX() - e2.getX();
-					int scrollOffset = Math.round(currentScrollDelta);
+					int scrollOffset = 0;
+					if(isLeftPosition) {
+						scrollOffset = Math.round(currentScrollDelta) + fragmentMoveDistance;
+					} else {				
+						scrollOffset = Math.round(currentScrollDelta);
+					}
 
 					setOffset(scrollOffset, 0);
 					isDrag = true;

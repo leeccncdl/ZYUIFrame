@@ -18,19 +18,23 @@ public final class R {
         public static final int ic_launcher=0x7f020004;
     }
     public static final class id {
-        public static final int behind_view=0x7f070001;
-        public static final int detail_button_frag=0x7f070000;
-        public static final int detail_view_fl=0x7f070005;
-        public static final int main_top_menu=0x7f070002;
-        public static final int menu_settings=0x7f07000c;
-        public static final int mic=0x7f070009;
-        public static final int secondary_menu_frag_button_test=0x7f070008;
-        public static final int secondary_menu_text=0x7f070007;
-        public static final int secondary_menu_view_fl=0x7f070004;
-        public static final int shortcut_menu=0x7f070003;
-        public static final int testid=0x7f070006;
-        public static final int top_menu_button1=0x7f07000a;
-        public static final int top_menu_button2=0x7f07000b;
+        public static final int behind_view=0x7f070005;
+        public static final int detail_button_frag=0x7f070003;
+        public static final int detail_button_open=0x7f070004;
+        public static final int detail_fargment_fragcontent_ll=0x7f070002;
+        public static final int detail_fragment_range_ll_1=0x7f070000;
+        public static final int detail_fragment_range_ll_2=0x7f070001;
+        public static final int detail_view_fl=0x7f070009;
+        public static final int main_top_menu=0x7f070006;
+        public static final int menu_settings=0x7f070010;
+        public static final int mic=0x7f07000d;
+        public static final int secondary_menu_frag_button_test=0x7f07000c;
+        public static final int secondary_menu_text=0x7f07000b;
+        public static final int secondary_menu_view_fl=0x7f070008;
+        public static final int shortcut_menu=0x7f070007;
+        public static final int testid=0x7f07000a;
+        public static final int top_menu_button1=0x7f07000e;
+        public static final int top_menu_button2=0x7f07000f;
     }
     public static final class layout {
         public static final int detail_fragment=0x7f030000;
@@ -47,6 +51,7 @@ public final class R {
         public static final int closed_detail_frag=0x7f040009;
         public static final int hello_world=0x7f040001;
         public static final int menu_settings=0x7f040002;
+        public static final int open_detail_frag=0x7f04000a;
         public static final int secondary_menu=0x7f040004;
         public static final int test_button_fragment=0x7f040008;
         public static final int test_button_one=0x7f040006;

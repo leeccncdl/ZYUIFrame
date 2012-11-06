@@ -7,23 +7,41 @@
 
     <LinearLayout
         style="@style/layout_horizontal"
-        android:layout_weight="2">
+        android:layout_weight="1" >
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/detail_fragment_range_ll_1"
+        style="@style/layout_horizontal"
+        android:layout_weight="1" >
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/detail_fragment_range_ll_2"
         style="@style/layout_horizontal"
         android:layout_weight="4"
         android:orientation="vertical" >
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/detail_fargment_fragcontent_ll"
         style="@style/layout_horizontal"
-        android:layout_weight="4" 
-        android:background="#8d8d8d">
-	<Button 
-	    android:id="@+id/detail_button_frag"
-	    style="@style/layout_wrap"
-	    android:text="@string/closed_detail_frag"/>
+        android:layout_weight="4"
+        android:background="#8d8d8d" >
+
+        <LinearLayout
+            style="@style/layout_match"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/detail_button_frag"
+                style="@style/layout_wrap"
+                android:text="@string/closed_detail_frag" />
+            <Button 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail_button_open"
+                android:text="@string/open_detail_frag"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

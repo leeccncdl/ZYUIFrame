@@ -66,7 +66,7 @@ public class SecondaryMenuFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if(v.getId() == R.id.secondary_menu_frag_button_test) {
-			 ((MainFrameActivity)getActivity()).OpenDetailFragment(0);
+			 ((MainFrameActivity)getActivity()).openDetailFragment(0);
 		}
 	}
 }

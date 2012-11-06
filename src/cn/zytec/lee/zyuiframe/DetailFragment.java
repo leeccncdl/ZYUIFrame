@@ -7,27 +7,38 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
-public class DetailFragment extends Fragment  implements OnClickListener {
-	
+public class DetailFragment extends Fragment implements OnClickListener {
+
 	private Button b;
-
-    public static DetailFragment newInstance(int detailIndex) {
-    	DetailFragment f = new DetailFragment();
-
-        Bundle args = new Bundle();
-        args.putInt("detailIndex", detailIndex);
-        f.setArguments(args);
-
-        return f;
-    }
+	private Button open;
+	private LinearLayout l0;
+	private LinearLayout l1;
+//	private LinearLayout l2;
 	
+	public static DetailFragment newInstance(int detailIndex) {
+		DetailFragment f = new DetailFragment();
+
+		Bundle args = new Bundle();
+		args.putInt("detailIndex", detailIndex);
+		f.setArguments(args);
+
+		return f;
+	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		b = (Button) getView().findViewById(R.id.detail_button_frag);
+		open = (Button) getView().findViewById(R.id.detail_button_open);
 		
+		l0 = (LinearLayout) getView().findViewById(R.id.detail_fragment_range_ll_1);
+		l1 = (LinearLayout) getView().findViewById(R.id.detail_fragment_range_ll_2);
+//		l2 = (LinearLayout) getView().findViewById(R.id.detail_fargment_fragcontent_ll);
+
 		b.setOnClickListener(this);
-		// TODO Auto-generated method stub
+		open.setOnClickListener(this);
+
 		super.onActivityCreated(savedInstanceState);
 	}
 
@@ -52,10 +63,22 @@ public class DetailFragment extends Fragment  implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		if(v.getId() == R.id.detail_button_frag) {
-			((MainFrameActivity)getActivity()).ClosedDetailFragment(this);
+
+		switch (v.getId()) {
+		case R.id.detail_button_frag:
+			((MainFrameActivity) getActivity()).closedDetailFragment(this);
+			break;
+		case R.id.detail_button_open:
+			((MainFrameActivity) getActivity()).expandDetailFragment(this);
+			break;
+		default:
+			break;
 		}
 	}
 	
+	public void expandSelf() {
+		l0.setVisibility(View.GONE);
+		l1.setVisibility(View.GONE);
+	}
+
 }
