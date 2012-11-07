@@ -13,7 +13,8 @@
         android:theme="@android:style/Theme.NoTitleBar">
         <activity
             android:name=".MainFrameActivity"
-            android:label="@string/title_activity_main_frame" >
+            android:label="@string/title_activity_main_frame" 
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

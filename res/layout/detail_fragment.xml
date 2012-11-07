@@ -9,16 +9,11 @@
         style="@style/layout_horizontal"
         android:layout_weight="1" >
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/detail_fragment_range_ll_1"
-        style="@style/layout_horizontal"
-        android:layout_weight="1" >
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/detail_fragment_range_ll_2"
         style="@style/layout_horizontal"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:orientation="vertical" >
     </LinearLayout>
 
@@ -26,7 +21,7 @@
         android:id="@+id/detail_fargment_fragcontent_ll"
         style="@style/layout_horizontal"
         android:layout_weight="4"
-        android:background="#8d8d8d" >
+        android:background="#E8E8E8" >
 
         <LinearLayout
             style="@style/layout_match"
