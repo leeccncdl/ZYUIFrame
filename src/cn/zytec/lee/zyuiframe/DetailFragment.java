@@ -38,7 +38,6 @@ public class DetailFragment extends Fragment implements OnClickListener {
 
 		b.setOnClickListener(this);
 		open.setOnClickListener(this);
-
 		super.onActivityCreated(savedInstanceState);
 	}
 
