@@ -23,12 +23,12 @@ public class MainFrameActivity extends FragmentActivity implements
 		OnClickListener {
 
 	// about animation
-	private boolean isDrag;
+	private boolean isDragState;
 	private int animationDuration = 250;
 	private Interpolator decelerateInterpolater;
 	private FixedPositionAnimation fixedAnimation;
 	private boolean isSecMenuLeftPosition = false;
-	private boolean isDetailRightPosition = false;
+//	private boolean isDetailRightPosition = false;
 	private boolean isDetailFragOpen;
 	private boolean isDetailExpand;
 
@@ -81,11 +81,18 @@ public class MainFrameActivity extends FragmentActivity implements
 		addListener();
 
 	}
+	
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		onTouchEvent(ev);
+		return super.dispatchTouchEvent(ev);
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		boolean temp = gestureDetector.onTouchEvent(event);
-		if (event.getAction() == MotionEvent.ACTION_UP && isDrag) {
+		if (event.getAction() == MotionEvent.ACTION_UP && isDragState) {
 			processScrollSnap();
 		}
 		return temp;
@@ -112,6 +119,7 @@ public class MainFrameActivity extends FragmentActivity implements
 			break;
 
 		case R.id.top_menu_button3:
+
 			break;
 		case R.id.top_menu_button4:
 			break;
@@ -133,21 +141,15 @@ public class MainFrameActivity extends FragmentActivity implements
 		DetailFragment detailFrag = DetailFragment.newInstance(position);
 		// 打开之前确保secondary显示在左侧
 		if (!isSecMenuLeftPosition) {
-
 			isSecMenuLeftPosition = true;
-
 			fixedAnimation.prepareAnimation(secondMenuFrameLayout);
 			secondMenuFrameLayout.startAnimation(fixedAnimation);
-
 		}
 
-		// Execute a transaction, replacing any existing fragment
-		// with this one inside the frame.
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.setCustomAnimations(android.R.anim.fade_in,
 				android.R.anim.slide_out_right);
 		ft.replace(R.id.detail_view_fl, detailFrag);
-		// ft.setTransition(FragmentTransaction.TRANSIT_ENTER_MASK);
 		ft.commit();
 
 		isDetailFragOpen = true;
@@ -158,14 +160,13 @@ public class MainFrameActivity extends FragmentActivity implements
 	 * @param fragment
 	 */
 	public void closedDetailFragment(Fragment fragment) {
-		// Execute a transaction, replacing any existing fragment
-		// with this one inside the frame.
+
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.setCustomAnimations(android.R.anim.slide_in_left,
 				android.R.anim.slide_out_right);
 		ft.remove(fragment);
-		// ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		ft.commit();
+		
 		isDetailFragOpen = false;
 	}
 
@@ -190,8 +191,6 @@ public class MainFrameActivity extends FragmentActivity implements
 	private void showSecondaryMenu(int index) {
 		secondaryMenuFrag = SecondaryMenuFragment.newInstance(index);
 
-		// Execute a transaction, replacing any existing fragment
-		// with this one inside the frame.
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
 		ft.replace(R.id.secondary_menu_view_fl, secondaryMenuFrag);
@@ -206,7 +205,7 @@ public class MainFrameActivity extends FragmentActivity implements
 		b3 = (Button) findViewById(R.id.top_menu_button3);
 		b4 = (Button) findViewById(R.id.top_menu_button4);
 		// refresh = (ImageView) findViewById(R.id.top_menu_refresh_iv);
-		// setup = (ImageView) findViewById(R.id.top_menu_setup_iv);
+		// setup = (ImageView) findViewById(R.id.top_menu_setup_iv); onTouch gesture 
 
 		secondMenuFrameLayout = (FrameLayout) findViewById(R.id.secondary_menu_view_fl);
 		detailFrameLayout = (FrameLayout) findViewById(R.id.detail_view_fl);
@@ -225,25 +224,30 @@ public class MainFrameActivity extends FragmentActivity implements
 	}
 
 	/**
-	 * @description 根据当前设备的width 计算所需展示的 值
-	 * @param percent
-	 *            长度百分比
-	 * @return
-	 */
-	private int CaculateFrameLayoutValue(int percent) {
-
-		return (int) (App.displayWidth * (percent / 100f));
-
-	}
-
-	/**
 	 * @description 二级菜单所手指触摸滑动后， 执行返回相应位置的动画
 	 */
 	private void processScrollSnap() {
 		if (isDetailFragOpen) {
-
-			fixedAnimation.prepareAnimation(detailFrameLayout);
-			detailFrameLayout.startAnimation(fixedAnimation);
+			System.out.println("*********"+detailFrameLayout.getScrollX()+"**********");
+			int outOfDistance = 0;
+			if(isDetailExpand) {
+				outOfDistance = windowWidthOfPercentten*7 + detailFrameLayout.getScrollX();
+			} else {
+				outOfDistance = windowWidthOfPercentten*4 + detailFrameLayout.getScrollX();
+			}
+			if(outOfDistance<0) {
+//				 activity.getSupportFragmentManager().findFragmentById(R.id.detail_view_fl).onDestroy();
+				detailFrameLayout.removeAllViews();
+				isDetailFragOpen = false;
+				isDetailExpand = false;
+				setOffset(0, 0, detailFrameLayout);
+//				if(activity.getSupportFragmentManager().findFragmentById(R.id.detail_view_fl) == null ) {
+//					System.out.println("Good");
+//				}
+			} else {
+				fixedAnimation.prepareAnimation(detailFrameLayout);
+				detailFrameLayout.startAnimation(fixedAnimation);
+			}
 		} else {
 
 			fixedAnimation.prepareAnimation(secondMenuFrameLayout);
@@ -251,38 +255,44 @@ public class MainFrameActivity extends FragmentActivity implements
 		}
 	}
 
+	/**
+	 * @description 设置显示区域的位移
+	 * @param xOffset 
+	 * @param yOffset
+	 * @param view 该view所在层的显示区域
+	 */
 	private void setOffset(int xOffset, int yOffset, View view) {
 		view.scrollTo(xOffset, yOffset);
 	}
 
 	class GestureListener extends SimpleOnGestureListener {
 
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-				float velocityY) {
-			// if (isDetailFragOpen) {
-			// // e1起始点在右半个屏幕
-			// float flingDistance = e2.getX() - e1.getX();
-			// float startPositionX = 0;
-			// float maxDistance = 0;
-			// if (isDetailExpand) {
-			// startPositionX = windowWidthOfPercentten * 2;
-			// maxDistance = windowWidthOfPercentten * 5;
-			// } else {
-			// startPositionX = windowWidthOfPercentten * 5;
-			// maxDistance = windowWidthOfPercentten * 3;
-			// }
-			//
-			// if (e1.getX() > startPositionX && flingDistance > maxDistance) {
-			// closedDetailFragment(activity.getSupportFragmentManager()
-			// .findFragmentById(R.id.detail_view_fl));
-			// }
-			//
-			// return true;
-			// }
-
-			return super.onFling(e1, e2, velocityX, velocityY);
-		}
+//		@Override
+//		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+//				float velocityY) {
+//			 if (isDetailFragOpen) {
+//			 // e1起始点在右半个屏幕
+//			 float flingDistance = e2.getX() - e1.getX();
+//			 float startPositionX = 0;
+//			 float maxDistance = 0;
+//			 if (isDetailExpand) {
+//			 startPositionX = windowWidthOfPercentten * 2;
+//			 maxDistance = windowWidthOfPercentten * 5;
+//			 } else {
+//			 startPositionX = windowWidthOfPercentten * 5;
+//			 maxDistance = windowWidthOfPercentten * 3;
+//			 }
+//			
+//			 if (e1.getX() > startPositionX && flingDistance > maxDistance) {
+//			 closedDetailFragment(activity.getSupportFragmentManager()
+//			 .findFragmentById(R.id.detail_view_fl));
+//			 }
+//			
+//			 return true;
+//			 }
+//
+//			return super.onFling(e1, e2, velocityX, velocityY);
+//		}
 
 		@Override
 		public boolean onScroll(MotionEvent e1, MotionEvent e2,
@@ -290,11 +300,11 @@ public class MainFrameActivity extends FragmentActivity implements
 
 			if (isDetailFragOpen) {
 				// 判断详细页面滑动方向，以确定滑动结束时，详细页面的停留位置
-				if (e2.getX() > e1.getX()) {
-					isDetailRightPosition = true;
-				} else {
-					isSecMenuLeftPosition = false;
-				}
+//				if (e2.getX() > e1.getX()) {
+//					isDetailRightPosition = true;
+//				} else {
+//					isSecMenuLeftPosition = false;
+//				}
 				int limitLeftX = 0;
 				if (isDetailExpand) {
 					limitLeftX = windowWidthOfPercentten * 2;
@@ -334,7 +344,7 @@ public class MainFrameActivity extends FragmentActivity implements
 					}
 				}
 			}
-			isDrag = true;
+			isDragState = true;
 			return true;
 		}
 	}
@@ -358,7 +368,7 @@ public class MainFrameActivity extends FragmentActivity implements
 
 				if (isSecMenuLeftPosition) {
 					mTargetDistance = mTargetOffset - mInitialOffset
-							+ CaculateFrameLayoutValue(10);
+							+ windowWidthOfPercentten;
 				} else {
 					mTargetDistance = mTargetOffset - mInitialOffset;
 				}
@@ -367,7 +377,7 @@ public class MainFrameActivity extends FragmentActivity implements
 			this.setDuration(animationDuration);
 			this.setInterpolator(decelerateInterpolater);
 
-			isDrag = false;
+			isDragState = false;
 		}
 
 		@Override
@@ -380,7 +390,6 @@ public class MainFrameActivity extends FragmentActivity implements
 			if (isDetailFragOpenAnimation) {
 				setOffset(offset, 0, detailFrameLayout);
 			} else {
-
 				setOffset(offset, 0, secondMenuFrameLayout);
 			}
 
@@ -389,7 +398,6 @@ public class MainFrameActivity extends FragmentActivity implements
 		@Override
 		public boolean getTransformation(long currentTime,
 				Transformation outTransformation) {
-
 			if (super.getTransformation(currentTime, outTransformation) == false) {
 				// 最后停在什么位置
 				if (isDetailFragOpen) {
@@ -401,12 +409,21 @@ public class MainFrameActivity extends FragmentActivity implements
 					} else {
 						setOffset(0, 0, secondMenuFrameLayout);
 					}
-
 				}
 
 				return false;
 			}
 			return true;
 		}
+	}
+	
+	/**
+	 * @description 根据当前设备的width 计算所需展示的 值
+	 * @param percent
+	 *            长度百分比
+	 * @return
+	 */
+	private int CaculateFrameLayoutValue(int percent) {
+		return (int) (App.displayWidth * (percent / 100f));
 	}
 }
