@@ -11,11 +11,11 @@ import android.widget.LinearLayout;
 
 public class DetailFragment extends Fragment implements OnClickListener {
 
+//	private static final String TAG = "DetailFragment";
+	
 	private Button b;
 	private Button open;
-//	private LinearLayout l0;
 	private LinearLayout l1;
-//	private LinearLayout l2;
 	
 	public static DetailFragment newInstance(int detailIndex) {
 		DetailFragment f = new DetailFragment();
@@ -29,9 +29,7 @@ public class DetailFragment extends Fragment implements OnClickListener {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		b = (Button) getView().findViewById(R.id.detail_button_frag);
 		open = (Button) getView().findViewById(R.id.detail_button_open);
-//		l0 = (LinearLayout) getView().findViewById(R.id.detail_fragment_range_ll_1);
 		l1 = (LinearLayout) getView().findViewById(R.id.detail_fragment_range_ll_2);
-//		l2 = (LinearLayout) getView().findViewById(R.id.detail_fargment_fragcontent_ll);
 
 		b.setOnClickListener(this);
 		open.setOnClickListener(this);
@@ -73,7 +71,6 @@ public class DetailFragment extends Fragment implements OnClickListener {
 	}
 	
 	public void expandSelf() {
-//		l0.setVisibility(View.GONE);
 		l1.setVisibility(View.GONE);
 	}
 

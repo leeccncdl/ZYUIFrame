@@ -7,15 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SecondaryMenuFragment extends Fragment implements OnClickListener {
 	
+//	private static final String TAG = "SecondaryMenuFragment";
+	
 	private TextView textView;
 	private Button buttonTest;
-	
-//	private LinearLayout testId;
 	
     public static SecondaryMenuFragment newInstance(int index) {
     	SecondaryMenuFragment f = new SecondaryMenuFragment();
@@ -32,9 +31,7 @@ public class SecondaryMenuFragment extends Fragment implements OnClickListener {
 
 		textView = (TextView) getView().findViewById(R.id.secondary_menu_text);
 		buttonTest = (Button) getView().findViewById(R.id.secondary_menu_frag_button_test);
-//		testId = (LinearLayout) getView().findViewById(R.id.testid);
 		buttonTest.setOnClickListener(this);
-//		testId.setOnClickListener(this);
 		int pos = getArguments().getInt("index", 0);
 		if(pos==0) {
 			textView.setText("top_menu_One",TextView.BufferType.EDITABLE);
