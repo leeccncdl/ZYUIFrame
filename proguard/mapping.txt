@@ -2956,9 +2956,6 @@ android.support.v4.widget.SimpleCursorAdapter$ViewBinder -> android.support.v4.w
 cn.zytec.lee.app.App -> cn.zytec.lee.app.App:
     int displayWidth -> a
     int displayHeight -> b
-    int SECONDMENUWIDTH -> c
-    int DETAILWIDTH -> d
-    int EXPANDDETAILWIDTH -> e
     20:21:void onCreate() -> onCreate
 cn.zytec.lee.zyuiframe.BuildConfig -> cn.zytec.lee.zyuiframe.a:
     boolean DEBUG -> a
@@ -2967,75 +2964,82 @@ cn.zytec.lee.zyuiframe.DetailFragment -> cn.zytec.lee.zyuiframe.b:
     android.widget.Button open -> b
     android.widget.LinearLayout l1 -> c
     21:25:cn.zytec.lee.zyuiframe.DetailFragment newInstance(int) -> newInstance
-    30:39:void onActivityCreated(android.os.Bundle) -> onActivityCreated
-    44:45:void onCreate(android.os.Bundle) -> onCreate
-    51:51:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    57:58:void onPause() -> onPause
-    63:73:void onClick(android.view.View) -> onClick
-    77:78:void expandSelf() -> expandSelf
+    30:37:void onActivityCreated(android.os.Bundle) -> onActivityCreated
+    42:43:void onCreate(android.os.Bundle) -> onCreate
+    49:49:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    55:56:void onPause() -> onPause
+    61:71:void onClick(android.view.View) -> onClick
+    74:75:void expandSelf() -> expandSelf
 cn.zytec.lee.zyuiframe.MainFrameActivity -> cn.zytec.lee.zyuiframe.MainFrameActivity:
     boolean isDragState -> p
-    int animationDuration -> q
-    android.view.animation.Interpolator decelerateInterpolater -> r
-    cn.zytec.lee.zyuiframe.MainFrameActivity$FixedPositionAnimation fixedAnimation -> s
-    boolean isSecMenuLeftPosition -> t
-    boolean isDetailFragOpen -> u
-    boolean isDetailExpand -> v
+    boolean isDetailFragOpen -> q
+    boolean isDetailExpand -> r
+    boolean isSecMenuLeftPosition -> s
+    boolean isScrollLeft -> t
+    int animationDuration -> u
+    android.view.animation.Interpolator decelerateInterpolater -> v
+    cn.zytec.lee.zyuiframe.MainFrameActivity$FixedPositionAnimation fixedAnimation -> w
     android.view.GestureDetector gestureDetector -> o
-    int fragmentMovePercent -> w
-    int windowWidthOfPercentten -> x
-    android.widget.ImageView mic -> y
-    android.widget.Button b1 -> z
-    android.widget.Button b2 -> A
-    android.widget.Button b3 -> B
-    android.widget.Button b4 -> C
-    android.widget.ImageView refresh -> D
-    android.widget.ImageView setup -> E
-    int topMenuPosition -> F
-    android.support.v4.app.FragmentActivity activity -> G
-    cn.zytec.lee.zyuiframe.SecondaryMenuFragment secondaryMenuFrag -> H
-    android.widget.FrameLayout secondMenuFrameLayout -> I
-    android.widget.FrameLayout detailFrameLayout -> J
-    63:83:void onCreate(android.os.Bundle) -> onCreate
-    88:89:boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
-    94:98:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    104:133:void onClick(android.view.View) -> onClick
-    141:156:void openDetailFragment(int) -> openDetailFragment
-    164:171:void closedDetailFragment(android.support.v4.app.Fragment) -> closedDetailFragment
-    180:184:void expandDetailFragment(cn.zytec.lee.zyuiframe.DetailFragment) -> expandDetailFragment
-    192:198:void showSecondaryMenu(int) -> b
-    201:213:void findView() -> c
-    216:224:void addListener() -> d
-    230:256:void processScrollSnap() -> e
-    265:266:void setOffset(int,int,android.view.View) -> a
-    427:427:int CaculateFrameLayoutValue(int) -> c
-    32:32:boolean access$0(cn.zytec.lee.zyuiframe.MainFrameActivity) -> a
-    33:33:boolean access$1(cn.zytec.lee.zyuiframe.MainFrameActivity) -> b
-    38:38:int access$2(cn.zytec.lee.zyuiframe.MainFrameActivity) -> c
-    58:58:android.widget.FrameLayout access$3(cn.zytec.lee.zyuiframe.MainFrameActivity) -> d
-    264:264:void access$4(cn.zytec.lee.zyuiframe.MainFrameActivity,int,int,android.view.View) -> a
-    30:30:void access$5(cn.zytec.lee.zyuiframe.MainFrameActivity,boolean) -> a
+    int fragmentMovePercent -> x
+    int windowWidthOfTenPercent -> y
+    cn.zytec.lee.zyuiframe.SecondaryMenuFragment secondaryMenuFrag -> z
+    android.widget.FrameLayout secondMenuFrameLayout -> A
+    android.widget.FrameLayout detailFrameLayout -> B
+    int topMenuPosition -> C
+    android.widget.ImageView mic -> D
+    android.widget.Button b1 -> E
+    android.widget.Button b2 -> F
+    android.widget.Button b3 -> G
+    android.widget.Button b4 -> H
+    56:75:void onCreate(android.os.Bundle) -> onCreate
+    79:80:boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
+    85:89:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    94:127:void onClick(android.view.View) -> onClick
+    134:149:void openDetailFragment(int) -> openDetailFragment
+    157:164:void closedDetailFragment(android.support.v4.app.Fragment) -> closedDetailFragment
+    172:175:void expandDetailFragment(cn.zytec.lee.zyuiframe.DetailFragment) -> expandDetailFragment
+    182:188:void showSecondaryMenu(int) -> b
+    191:200:void findView() -> c
+    203:208:void addListener() -> d
+    214:235:void processScrollSnap() -> e
+    244:245:void setOffset(int,int,android.view.View) -> a
+    396:396:int CaculateFrameLayoutValue(int) -> c
+    28:28:boolean access$0(cn.zytec.lee.zyuiframe.MainFrameActivity) -> a
+    29:29:boolean access$1(cn.zytec.lee.zyuiframe.MainFrameActivity) -> b
+    39:39:int access$2(cn.zytec.lee.zyuiframe.MainFrameActivity) -> c
+    44:44:android.widget.FrameLayout access$3(cn.zytec.lee.zyuiframe.MainFrameActivity) -> d
+    243:243:void access$4(cn.zytec.lee.zyuiframe.MainFrameActivity,int,int,android.view.View) -> a
+    31:31:void access$5(cn.zytec.lee.zyuiframe.MainFrameActivity,boolean) -> a
     30:30:boolean access$6(cn.zytec.lee.zyuiframe.MainFrameActivity) -> e
-    57:57:android.widget.FrameLayout access$7(cn.zytec.lee.zyuiframe.MainFrameActivity) -> f
-    26:26:void access$8(cn.zytec.lee.zyuiframe.MainFrameActivity,boolean) -> b
-    27:27:int access$9(cn.zytec.lee.zyuiframe.MainFrameActivity) -> g
-    28:28:android.view.animation.Interpolator access$10(cn.zytec.lee.zyuiframe.MainFrameActivity) -> h
-    426:426:int access$11(cn.zytec.lee.zyuiframe.MainFrameActivity,int) -> a
+    43:43:android.widget.FrameLayout access$7(cn.zytec.lee.zyuiframe.MainFrameActivity) -> f
+    27:27:void access$8(cn.zytec.lee.zyuiframe.MainFrameActivity,boolean) -> b
+    31:31:boolean access$9(cn.zytec.lee.zyuiframe.MainFrameActivity) -> g
+    30:30:void access$10(cn.zytec.lee.zyuiframe.MainFrameActivity,boolean) -> c
+    33:33:int access$11(cn.zytec.lee.zyuiframe.MainFrameActivity) -> h
+    34:34:android.view.animation.Interpolator access$12(cn.zytec.lee.zyuiframe.MainFrameActivity) -> i
+    395:395:int access$13(cn.zytec.lee.zyuiframe.MainFrameActivity,int) -> a
 cn.zytec.lee.zyuiframe.MainFrameActivity$FixedPositionAnimation -> cn.zytec.lee.zyuiframe.MainFrameActivity$a:
     int mInitialOffset -> b
     int mTargetOffset -> c
     int mTargetDistance -> d
     boolean isDetailFragOpenAnimation -> e
     cn.zytec.lee.zyuiframe.MainFrameActivity this$0 -> a
-    361:381:void prepareAnimation(android.view.View) -> prepareAnimation
-    386:396:void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
-    401:416:boolean getTransformation(long,android.view.animation.Transformation) -> getTransformation
+    329:350:void prepareAnimation(android.view.View) -> prepareAnimation
+    355:365:void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
+    370:385:boolean getTransformation(long,android.view.animation.Transformation) -> getTransformation
 cn.zytec.lee.zyuiframe.MainFrameActivity$GestureListener -> cn.zytec.lee.zyuiframe.MainFrameActivity$b:
     cn.zytec.lee.zyuiframe.MainFrameActivity this$0 -> a
-    301:348:boolean onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onScroll
+    279:316:boolean onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onScroll
 cn.zytec.lee.zyuiframe.R -> cn.zytec.lee.zyuiframe.c:
-cn.zytec.lee.zyuiframe.R$attr -> cn.zytec.lee.zyuiframe.c$a:
-cn.zytec.lee.zyuiframe.R$drawable -> cn.zytec.lee.zyuiframe.c$b:
+cn.zytec.lee.zyuiframe.R$anim -> cn.zytec.lee.zyuiframe.c$a:
+    int push_up_in -> push_up_in
+    int push_up_out -> push_up_out
+    int slide_in_right -> slide_in_right
+    int slide_out_right -> slide_out_right
+    int zoom_enter -> zoom_enter
+    int zoom_exit -> zoom_exit
+cn.zytec.lee.zyuiframe.R$attr -> cn.zytec.lee.zyuiframe.c$b:
+cn.zytec.lee.zyuiframe.R$drawable -> cn.zytec.lee.zyuiframe.c$c:
     int background_04 -> background_04
     int background_05 -> background_05
     int device_access_mic -> device_access_mic
@@ -3050,7 +3054,7 @@ cn.zytec.lee.zyuiframe.R$drawable -> cn.zytec.lee.zyuiframe.c$b:
     int title_2a -> title_2a
     int title_3a -> title_3a
     int title_4a -> title_4a
-cn.zytec.lee.zyuiframe.R$id -> cn.zytec.lee.zyuiframe.c$c:
+cn.zytec.lee.zyuiframe.R$id -> cn.zytec.lee.zyuiframe.c$d:
     int behind_view -> behind_view
     int detail_button_frag -> detail_button_frag
     int detail_button_open -> detail_button_open
@@ -3069,15 +3073,15 @@ cn.zytec.lee.zyuiframe.R$id -> cn.zytec.lee.zyuiframe.c$c:
     int top_menu_button2 -> top_menu_button2
     int top_menu_button3 -> top_menu_button3
     int top_menu_button4 -> top_menu_button4
-cn.zytec.lee.zyuiframe.R$layout -> cn.zytec.lee.zyuiframe.c$d:
+cn.zytec.lee.zyuiframe.R$layout -> cn.zytec.lee.zyuiframe.c$e:
     int detail_fragment -> detail_fragment
     int main_frame -> main_frame
     int secondary_menu_fragment -> secondary_menu_fragment
     int shortcut_menu -> shortcut_menu
     int top_menu -> top_menu
-cn.zytec.lee.zyuiframe.R$menu -> cn.zytec.lee.zyuiframe.c$e:
+cn.zytec.lee.zyuiframe.R$menu -> cn.zytec.lee.zyuiframe.c$f:
     int main_frame -> main_frame
-cn.zytec.lee.zyuiframe.R$string -> cn.zytec.lee.zyuiframe.c$f:
+cn.zytec.lee.zyuiframe.R$string -> cn.zytec.lee.zyuiframe.c$g:
     int app_name -> app_name
     int closed_detail_frag -> closed_detail_frag
     int hello_world -> hello_world
@@ -3092,7 +3096,7 @@ cn.zytec.lee.zyuiframe.R$string -> cn.zytec.lee.zyuiframe.c$f:
     int test_button_two -> test_button_two
     int title_activity_main_frame -> title_activity_main_frame
     int top_menu -> top_menu
-cn.zytec.lee.zyuiframe.R$style -> cn.zytec.lee.zyuiframe.c$g:
+cn.zytec.lee.zyuiframe.R$style -> cn.zytec.lee.zyuiframe.c$h:
     int layout_horizontal -> layout_horizontal
     int layout_match -> layout_match
     int layout_vertical -> layout_vertical
@@ -3100,9 +3104,9 @@ cn.zytec.lee.zyuiframe.R$style -> cn.zytec.lee.zyuiframe.c$g:
 cn.zytec.lee.zyuiframe.SecondaryMenuFragment -> cn.zytec.lee.zyuiframe.d:
     android.widget.TextView textView -> a
     android.widget.Button buttonTest -> b
-    21:27:cn.zytec.lee.zyuiframe.SecondaryMenuFragment newInstance(int) -> newInstance
-    33:45:void onActivityCreated(android.os.Bundle) -> onActivityCreated
-    50:51:void onCreate(android.os.Bundle) -> onCreate
-    57:57:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    63:64:void onPause() -> onPause
-    68:73:void onClick(android.view.View) -> onClick
+    22:28:cn.zytec.lee.zyuiframe.SecondaryMenuFragment newInstance(int) -> newInstance
+    34:49:void onActivityCreated(android.os.Bundle) -> onActivityCreated
+    54:55:void onCreate(android.os.Bundle) -> onCreate
+    61:61:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    67:68:void onPause() -> onPause
+    72:77:void onClick(android.view.View) -> onClick

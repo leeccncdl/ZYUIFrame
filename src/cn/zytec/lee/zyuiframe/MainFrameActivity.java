@@ -17,13 +17,21 @@ import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 import cn.zytec.lee.app.App;
 
+/** 
+* @ClassName: MainFrameActivity 
+* @Description: 主页面 
+* @author 香格李拉   limingdl@yeah.net
+* @date 2013-5-8 下午04:01:03  
+*/
 public class MainFrameActivity extends FragmentActivity implements
 		OnClickListener {
 
 //	private static final String TAG = "MainFrameActivity";
 	
+	//几种二级三级fragment的位置滑动状态标记
 	private boolean isDragState = false;
 	private boolean isDetailFragOpen = false;;
 	private boolean isDetailExpand = false;
@@ -35,15 +43,15 @@ public class MainFrameActivity extends FragmentActivity implements
 	private FixedPositionAnimation fixedAnimation;
 	public static GestureDetector gestureDetector;
 
-	private static int fragmentMovePercent = 10;
-	private int windowWidthOfTenPercent;
+	private static int fragmentMovePercent = 10;//用于计算屏幕一定距离的数值
+	private int windowWidthOfTenPercent;//十分之一屏幕宽度的值
 
 	// layout and fragment
 	private SecondaryMenuFragment secondaryMenuFrag;
 	private FrameLayout secondMenuFrameLayout;
 	private FrameLayout detailFrameLayout;
 	
-	private int topMenuPosition = 0;
+	private int topMenuPosition = 0;//保存顶级菜单选中的值
 	private ImageView mic;
 	private Button b1;
 	private Button b2;
@@ -54,20 +62,22 @@ public class MainFrameActivity extends FragmentActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		
+		//取屏幕信息
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		App.displayWidth = displayMetrics.widthPixels;
 		App.displayHeight = displayMetrics.heightPixels;
+		//计算屏幕宽度的十分之一，用于后面Fragment显示位置的设定
 		windowWidthOfTenPercent = CaculateFrameLayoutValue(fragmentMovePercent);
 		
 		setContentView(R.layout.main_frame);
 
 		fixedAnimation = new FixedPositionAnimation();
 		gestureDetector = new GestureDetector(this, new GestureListener());
+		//动画的插值器
 		decelerateInterpolater = AnimationUtils.loadInterpolator(this,
 				android.R.anim.decelerate_interpolator);
-
+		//显示二级菜单fragment
 		showSecondaryMenu(topMenuPosition);
 		findView();
 		addListener();
@@ -105,7 +115,7 @@ public class MainFrameActivity extends FragmentActivity implements
 			}
 			break;
 		case R.id.mic:
-			System.out.println("MIC----------------OnClick--------");
+			Toast.makeText(this, "快捷操作菜单被选中", Toast.LENGTH_SHORT).show();
 			break;
 
 		case R.id.top_menu_button3:

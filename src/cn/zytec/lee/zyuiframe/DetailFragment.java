@@ -17,6 +17,9 @@ public class DetailFragment extends Fragment implements OnClickListener {
 	private Button open;
 	private LinearLayout l1;
 	
+	private int mIndex;
+
+	
 	public static DetailFragment newInstance(int detailIndex) {
 		DetailFragment f = new DetailFragment();
 		Bundle args = new Bundle();
@@ -38,14 +41,18 @@ public class DetailFragment extends Fragment implements OnClickListener {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		
+
+		
 		super.onCreate(savedInstanceState);
+		mIndex = getArguments().getInt("detailIndex");
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		
 		return inflater.inflate(R.layout.detail_fragment, container, false);
 	}
 

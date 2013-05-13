@@ -2176,6 +2176,13 @@ cn.zytec.lee.zyuiframe.MainFrameActivity$FixedPositionAnimation: void prepareAni
 cn.zytec.lee.zyuiframe.MainFrameActivity$FixedPositionAnimation: boolean getTransformation(long,android.view.animation.Transformation)
 cn.zytec.lee.zyuiframe.MainFrameActivity$GestureListener: boolean onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)
 cn.zytec.lee.zyuiframe.R: R()
+cn.zytec.lee.zyuiframe.R$anim: int push_up_in
+cn.zytec.lee.zyuiframe.R$anim: int push_up_out
+cn.zytec.lee.zyuiframe.R$anim: int slide_in_right
+cn.zytec.lee.zyuiframe.R$anim: int slide_out_right
+cn.zytec.lee.zyuiframe.R$anim: int zoom_enter
+cn.zytec.lee.zyuiframe.R$anim: int zoom_exit
+cn.zytec.lee.zyuiframe.R$anim: R$anim()
 cn.zytec.lee.zyuiframe.R$attr: R$attr()
 cn.zytec.lee.zyuiframe.R$drawable: int background_04
 cn.zytec.lee.zyuiframe.R$drawable: int background_05
