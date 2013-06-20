@@ -187,6 +187,7 @@ public class MainFrameActivity extends FragmentActivity implements
 	/**
 	 * @description  显示二级菜单fragment
 	 * @param position 顶级菜单所选项
+	 * 事件处理机制 消息处理机制（线程间通信） 手势动画   图片显示 存储 网络
 	 */
 	private void showSecondaryMenu(int position) {
 		secondaryMenuFrag = SecondaryMenuFragment.newInstance(position);
